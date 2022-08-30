@@ -1,9 +1,7 @@
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorhandler');
 const Driver = require('../models/driverModel.js');
-const path = require('path');
 const sendToken = require('../utils/jwtToken');
-const amqp = require('amqplib');
 const logger = require('../logger/index');
 let channel;
 
