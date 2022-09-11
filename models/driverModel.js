@@ -32,22 +32,9 @@ const driverSchema = extendSchema(baseUserModel.schema, {
     require: [true, 'Please provide License Number'],
     unique: true,
   },
-
-  phone: {
+  NIDNumber: {
     type: String,
-    required: [true, 'Please Enter Your Phone'],
-    maxlength: [
-      11,
-      'Phone Number cannot exceed 11 digits, exclude +88 if provided',
-    ],
-    minlength: [11, 'Phone number cannot be less than 11 digits'],
-    unique: false,
-    validate: {
-      validator: function (arr) {
-        return !isNaN(arr);
-      },
-      message: 'Please Enter a valid Phone Number',
-    },
+    require: [true, 'Please provide NID Number'],
   },
   owner: {
     type: mongoose.Schema.ObjectId,
