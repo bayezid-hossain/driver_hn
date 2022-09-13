@@ -43,7 +43,15 @@ exports.registerDriver = catchAsyncErrors(async (req, res, next) => {
             actionBy: owner,
           });
           return next(
-            new ErrorHandler('Driver with this information already added')
+            new ErrorHandler(
+              'Driver ' +
+                driverName +
+                ' with License number ' +
+                licenseNumber +
+                ' and NID number ' +
+                NIDNumber +
+                ' already Added '
+            )
           );
         }
         const validDriverPayload = {
@@ -53,7 +61,7 @@ exports.registerDriver = catchAsyncErrors(async (req, res, next) => {
 
         const driverValidity = await axios
           .post(
-            'http://localhost:8006/api/v1/crosscheck/driver',
+            'http://44.202.73.200:8006/api/v1/crosscheck/driver',
             validDriverPayload
           )
           .catch(function (error) {
