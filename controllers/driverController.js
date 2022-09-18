@@ -115,21 +115,19 @@ exports.registerDriver = catchAsyncErrors(async (req, res, next) => {
           profiler.done({
             message: driverValidity.data.message,
             level: 'error',
-            actionBy: owner.id,
+            actionBy: owner,
           });
           res.status(400).json({
-            msg: driverValidity.data.message,
+            message: driverValidity.data.message,
           });
         }
       } catch (error) {
         profiler.done({
           message: error,
           level: 'error',
-          actionBy: owner.id,
+          actionBy: owner,
         });
-        return next(
-          new ErrorHandler('Please provide all Informations correctly')
-        );
+        return next(new ErrorHandler(error, error.code));
       } finally {
         try {
           deleteFile(drivingLicense.filepath);

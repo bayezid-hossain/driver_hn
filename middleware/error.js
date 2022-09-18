@@ -2,7 +2,6 @@ const ErrorHandler = require('../utils/errorhandler');
 
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
-  err.code = err.code || 500;
   err.message = err.message || 'Internal Server Error';
 
   //wrong mongodb id error
@@ -14,10 +13,10 @@ module.exports = (err, req, res, next) => {
 
   //mongoose duplicate key error
 
-  if (err.code == 11000 || err.statusCode == 11000) {
+  if (err.statusCode == 11000) {
     let message = err.keyValue
       ? `Duplicate ${Object.keys(err.keyValue)} Entered`
-      : `User already exists`;
+      : `Duplicate property entered`;
     err = new ErrorHandler(message, 400);
   }
 
