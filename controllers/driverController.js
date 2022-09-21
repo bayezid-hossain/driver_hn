@@ -61,7 +61,7 @@ exports.registerDriver = catchAsyncErrors(async (req, res, next) => {
 
         const driverValidity = await axios
           .post(
-            'http://44.202.73.200:8006/api/v1/crosscheck/driver',
+            'http://18.213.177.252:8006/api/v1/crosscheck/driver',
             validDriverPayload
           )
           .catch(function (error) {
